@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Fecha } from "./Fecha";
+import { Date } from "././Date";
 
-const meta: Meta<typeof Fecha> = {
-  title: "Example/Fecha",
-  component: Fecha,
+const meta: Meta<typeof Date> = {
+  title: "Example/Date",
+  component: Date,
 };
 
 export default meta;
-type Story = StoryObj<typeof Fecha>;
+type Story = StoryObj<typeof Date>;
 
 const handleChange = (evento:any) =>{
   console.log(evento.target.value)
@@ -16,8 +16,6 @@ const handleChange = (evento:any) =>{
 
 export const Primary: Story = {
   args: {
-    handleChange: handleChange,
+    
   },
 };
-
-

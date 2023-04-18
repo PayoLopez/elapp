@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Modaal } from "./Modaal";
+import { ClickeableCard } from "./ClickeableCard";
 
-const meta: Meta<typeof Modaal> = {
-  title: "Example/ Modaal",
-  component:  Modaal,
+const meta: Meta<typeof ClickeableCard> = {
+  title: "Example/ClickeableCard",
+  component: ClickeableCard,
 };
 
 export default meta;
-type Story = StoryObj<typeof  Modaal>;
+type Story = StoryObj<typeof ClickeableCard>;
 
 const handleChange = (evento:any) =>{
   console.log(evento.target.value)

@@ -1,14 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Modaal } from "./Modaal";
+import { Title } from "./Title";
 
-const meta: Meta<typeof Modaal> = {
-  title: "Example/ Modaal",
-  component:  Modaal,
+const meta: Meta<typeof Title> = {
+  title: "Example/Title",
+  component: Title,
 };
 
 export default meta;
-type Story = StoryObj<typeof  Modaal>;
+type Story = StoryObj<typeof Title>;
 
 const handleChange = (evento:any) =>{
   console.log(evento.target.value)
