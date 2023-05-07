@@ -1,21 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Modaal } from "./Modaal";
+import { Modal } from "./Modaal";
 
-const meta: Meta<typeof Modaal> = {
+const meta: Meta<typeof Modal> = {
   title: "Example/ Modaal",
-  component:  Modaal,
+  component:  Modal,
 };
 
 export default meta;
-type Story = StoryObj<typeof  Modaal>;
+type Story = StoryObj<typeof  Modal>;
 
-const handleChange = (evento:any) =>{
-  console.log(evento.target.value)
+const handleConfirm = () =>{
+  console.log("Confirmaste la accion")
 }
 
 export const Primary: Story = {
   args: {
-    
+    handleConfirm:handleConfirm
   },
 };

@@ -1,0 +1,14 @@
+.container{
+    display: flex;
+    background: rgb(31, 31, 31);
+    color:white;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.timeContainer{
+    cursor: pointer;
+}

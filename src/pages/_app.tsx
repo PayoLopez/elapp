@@ -1,11 +1,13 @@
-import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { NextUIProvider } from '@nextui-org/react';
+import { NextUIProvider } from "@nextui-org/react";
+import styles from "@/styles/Home.module.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider>
-      <Component {...pageProps} />
+      <main className={styles.main}>
+        <Component {...pageProps} />
+      </main>
     </NextUIProvider>
   );
 }

@@ -18,6 +18,7 @@ export const ClickeableCard = ({handleClick,title,status}:ClickeableCardProps)=>
         isPressable={isPressable}
         isHoverable
         variant="bordered"
+        onClick={handleClick}
         css={{ mw: "400px", bgColor}}
       >
         <Card.Body>
