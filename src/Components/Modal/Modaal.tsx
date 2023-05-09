@@ -7,7 +7,7 @@ interface ModalProps {
   title?: string;
   open: boolean;
 }
-/*hola*/
+
 export const Modal = ({
   handleConfirm,
   handleCancel,

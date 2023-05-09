@@ -1,7 +1,10 @@
 
 
+import { url } from "inspector";
 import { Turno } from "../models/turnos";
 import { TURNOS_DISPONIBLES } from "./_mocks_/turnosMock";
+import axios from "axios";
+
 
 interface buscarTurnosProps{
     fecha:string | string[];
@@ -9,11 +12,15 @@ interface buscarTurnosProps{
 
 export const buscarTurnos = async ({fecha}:buscarTurnosProps) => {
     console.log(`Buscando turnos para la fecha: ${fecha}`);
-    return new Promise<Turno[]>((resolve, reject) => {
-      setTimeout(() => {
-        console.log(`Ya encontre todos los turnos`);
-        resolve(TURNOS_DISPONIBLES);
-      }, 5000);
-    });
-    
-};
+
+    try {
+      const response = await axios.get('/api/turnos');
+      const data = response.data;
+      console.log(`Ya encontre todos los turnos`);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
