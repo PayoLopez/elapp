@@ -4,21 +4,28 @@ import { Loading } from "@nextui-org/react";
 import { buscarTurnos, confirmTurno } from "@/src/services/turnos";
 import { Modal } from "@/src/Components/Modal/Modaal";
 
-
 import type { Turno } from "@/src/models/turnos";
 import { ClickeableCard } from "@/src/Components/ClickeableCard/ClickeableCard";
 import { Switcher, Time } from "@/src/Components/Switcher/Switcher";
+import { Title } from "@/src/Components/Title/Title";
 
 export default function Turno() {
   const router = useRouter();
-
   const fecha = router.query.date;
+
   const [turnos, setTurnos] = useState<Turno[]>();
   const [filteredTurnos, setFilteredTurnos] = useState<Turno[]>();
   const [selected, setSelected] = useState<Time>("MAÑANA");
   const [modalOpen, setModalOpen] = useState(false);
- 
+  const [mostrarFecha, setMostrarFecha] = useState<string>("");
+  const [turnoSeleccionado, setTurnoSeleccionado] = useState<Turno>();
 
+  useEffect(() => {
+    if (fecha) {
+      console.log(fecha);
+      setMostrarFecha(fecha as string);
+    }
+  }, [fecha]);
 
   useEffect(() => {
     const filtered = turnos?.filter((turno) => turno.timeType === selected);
@@ -26,8 +33,24 @@ export default function Turno() {
   }, [selected]);
 
   const handleModalConfirm = () => {
-    console.log("Confirm clicked");
+    debugger
+    console.log("Confirm clicked with turno:", turnoSeleccionado);
+    confirmTurno(turnoSeleccionado as Turno).then((turnoConfirmed) => {
+      if (!filteredTurnos) {
+        return;
+      }
+      const filteredTurnosCopy = [...filteredTurnos];
+      let indexTurno = filteredTurnosCopy?.findIndex(
+        (turno) => turno.id === turnoConfirmed.id
+      );
+      if (!indexTurno) {
+        return;
+      }
+      filteredTurnosCopy[indexTurno] = turnoConfirmed;
+      setFilteredTurnos(filteredTurnosCopy);
+    });
     setModalOpen(false);
+    setTurnoSeleccionado(undefined);
   };
 
   const handleModalCancel = () => {
@@ -38,7 +61,8 @@ export default function Turno() {
   const handleClick = (turno: Turno) => {
     console.log("Hiciste click en el turno: ", turno);
     setModalOpen(true);
-    
+    console.log("Seteando turno seleccionado: ", turno);
+    setTurnoSeleccionado(turno);
   };
 
   useEffect(() => {
@@ -50,7 +74,7 @@ export default function Turno() {
     buscarTurnos({ fecha }).then((turnosData) => {
       setTurnos(turnosData);
       const filtered = turnosData.filter(
-        (turno:Turno) => turno.timeType === selected
+        (turno: Turno) => turno.timeType === selected
       );
       setFilteredTurnos(filtered);
     });
@@ -59,6 +83,9 @@ export default function Turno() {
   return (
     <>
       {!turnos && <Loading />}
+      {mostrarFecha && (
+        <Title title={`Turnos disponibles para el ${mostrarFecha}`} />
+      )}
 
       {filteredTurnos && (
         <>

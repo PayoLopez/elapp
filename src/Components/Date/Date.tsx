@@ -8,9 +8,10 @@ interface DateProps {
 
 export const DateInput = ({ handleChange }: DateProps) => {
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} >
       <DatePicker
         onChange={handleChange}
+        format="DD/MM/YYYY"
         sx={{
           border: "solid 1px white",
           borderRadius:'10px',

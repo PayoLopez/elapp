@@ -13,11 +13,17 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState<string>();
 
   const handleChange = (value: any) => {
-    const day = new Date(value).getDate()
-    const month = new Date(value).getMonth()
-    const year = new Date(value).getFullYear()
-    setSelectedDate(`${day}-${month}-${year}`)
-  }; 
+    console.log("Fecha recibida desde el date picker:", value);
+    console.log("Fecha new date del value: ", new Date(value));
+    console.log("get date: ", new Date(value).getDate());
+    console.log("get month: ", new Date(value).getMonth());
+    console.log("get FullYear: ", new Date(value).getFullYear());
+
+    const day = new Date(value).getDate();
+    const month = new Date(value).getMonth() + 1;
+    const year = new Date(value).getFullYear();
+    setSelectedDate(`${day}-${month}-${year}`);
+  };
 
   return (
     <>
@@ -31,7 +37,10 @@ export default function Home() {
       <div className={styles.container}>
         <Title title={"Seleccione una Fecha"} />
         <DateInput handleChange={handleChange} />
-        <Link href={`/turnos/${selectedDate}`} className="link">
+        <Link
+          href={selectedDate ? `/turnos/${selectedDate}` : ""}
+          className="link"
+        >
           <Button
             color="gradient"
             auto

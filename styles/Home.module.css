@@ -1,3 +1,4 @@
+
 .main {
   display: flex;
   flex-direction: column;
@@ -7,10 +8,7 @@
   min-height: 100vh;
   background-image: url("../public/images/fondo.jpg");
   background-size:cover;
-  background-repeat: no-repeat;
-
- 
-  
+  background-repeat: no-repeat 
 }
 
 .container {
@@ -48,4 +46,6 @@
   cursor: pointer;
 }
 
- 
+.fecha {
+  color: white;
+}
