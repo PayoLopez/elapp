@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Loading } from "@nextui-org/react";
-import { buscarTurnos } from "@/src/services/turnos";
+import { buscarTurnos, confirmTurno } from "@/src/services/turnos";
 import { Modal } from "@/src/Components/Modal/Modaal";
+
 
 import type { Turno } from "@/src/models/turnos";
 import { ClickeableCard } from "@/src/Components/ClickeableCard/ClickeableCard";
@@ -16,6 +17,8 @@ export default function Turno() {
   const [filteredTurnos, setFilteredTurnos] = useState<Turno[]>();
   const [selected, setSelected] = useState<Time>("MAÑANA");
   const [modalOpen, setModalOpen] = useState(false);
+ 
+
 
   useEffect(() => {
     const filtered = turnos?.filter((turno) => turno.timeType === selected);
@@ -35,6 +38,7 @@ export default function Turno() {
   const handleClick = (turno: Turno) => {
     console.log("Hiciste click en el turno: ", turno);
     setModalOpen(true);
+    
   };
 
   useEffect(() => {
@@ -46,7 +50,7 @@ export default function Turno() {
     buscarTurnos({ fecha }).then((turnosData) => {
       setTurnos(turnosData);
       const filtered = turnosData.filter(
-        (turno) => turno.timeType === selected
+        (turno:Turno) => turno.timeType === selected
       );
       setFilteredTurnos(filtered);
     });

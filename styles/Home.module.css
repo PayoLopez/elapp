@@ -5,7 +5,12 @@
   align-items: center;
   padding: 6rem;
   min-height: 100vh;
-  background-color: black;
+  background-image: url("../public/images/fondo.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+
+ 
+  
 }
 
 .container {
@@ -13,7 +18,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  background: #16181A;
+  background:#45484b;
   height: 500px;
   padding: 40px;
   border-radius: 20px;

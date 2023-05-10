@@ -1,3 +1,5 @@
+import { Turno } from "@/src/models/turnos";
+import { confirmTurno } from "@/src/services/turnos";
 import { Modal as ModalUI, useModal, Button, Text } from "@nextui-org/react";
 
 interface ModalProps {
@@ -19,6 +21,7 @@ export const Modal = ({
 console.log(open)
   const handleConfirmButton = () => {
     handleConfirm();
+    
   };
 
   const handleCloseButton = () => {

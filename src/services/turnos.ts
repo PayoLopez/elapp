@@ -23,4 +23,12 @@ export const buscarTurnos = async ({fecha}:buscarTurnosProps) => {
     }
   };
 
-
+  export const confirmTurno = async (turno: Turno) => {
+    try{
+      await axios.patch(`/api/turnos/${turno.id}`, {completed: true})
+      console.log(`turno ${turno.id} confirmado`);
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
