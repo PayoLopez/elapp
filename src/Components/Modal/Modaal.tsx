@@ -1,49 +1,63 @@
-import { Modal, useModal, Button, Text } from "@nextui-org/react";
+import { Turno } from "@/src/models/turnos";
+import { confirmTurno } from "@/src/services/turnos";
+import { Modal as ModalUI, useModal, Button, Text } from "@nextui-org/react";
 
-interface ModaalProps{
-  handleConfirm: ()=> void
-  handleCancel: ()=>void
+interface ModalProps {
+  handleConfirm: () => void;
+  handleCancel: () => void;
   content: any;
-
+  title?: string;
+  open: boolean;
 }
 
+export const Modal = ({
+  handleConfirm,
+  handleCancel,
+  content,
+  title,
+  open,
+}: ModalProps) => {
+  const { bindings } = useModal();
+console.log(open)
+  const handleConfirmButton = () => {
+    handleConfirm();
+    
+  };
 
-export const Modaal=({handleConfirm,handleCancel,content}:ModaalProps)=>{
+  const handleCloseButton = () => {
+    handleCancel();
+  };
 
-  const { setVisible, bindings } = useModal();
   return (
     <div>
-      <Button auto shadow color="secondary" onPress={() => setVisible(true)}>
-        Open modal
-      </Button>
-      <Modal
+      <ModalUI
         scroll
         width="600px"
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
+    
         {...bindings}
+        open={open}
       >
-        <Modal.Header>
+        <ModalUI.Header>
           <Text id="modal-title" size={18}>
-            Bienvenido A EL APP!
+            {title || "Bienvenido A EL APP!"}
           </Text>
-        </Modal.Header>
-        <Modal.Body>
+        </ModalUI.Header>
+        <ModalUI.Body>
           <Text id="modal-description">
-        Esta dispuesto que explote su computadora luego de tocar el boton Agree? 
+            Esta dispuesto que explote su computadora luego de tocar el boton Agree?
           </Text>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button auto flat color="error" onPress={() => setVisible(false)}>
+        </ModalUI.Body>
+        <ModalUI.Footer>
+          <Button auto flat color="error" onPress={handleCloseButton}>
             Close
           </Button>
-          <Button auto onPress={() => setVisible(false)}>
+          <Button auto onPress={handleConfirmButton}>
             Agree
           </Button>
-        </Modal.Footer>
-      </Modal>
+        </ModalUI.Footer>
+      </ModalUI>
     </div>
   );
-}
-
-   
+};

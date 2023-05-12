@@ -18,7 +18,8 @@ export const ClickeableCard = ({handleClick,title,status}:ClickeableCardProps)=>
         isPressable={isPressable}
         isHoverable
         variant="bordered"
-        css={{ mw: "400px", bgColor}}
+        onClick={handleClick}
+        css={{alignItems:'center', bgColor}}
       >
         <Card.Body>
           <Text>{title}</Text>
