@@ -10,6 +10,7 @@ export default function handler(
     const id = parseInt(req.query.id as string);
     console.log("Se ha recibido una solicitud para MODIFICAR el turno: ", id);
     console.log("Modificando el turno pedido...");
+    console.log("turno modificado con exito...");
 
     const turnoEncontrado = TURNOS_DISPONIBLES.find((turno) => turno.id === id);
     if (turnoEncontrado) {

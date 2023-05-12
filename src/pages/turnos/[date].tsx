@@ -33,7 +33,7 @@ export default function Turno() {
   }, [selected]);
 
   const handleModalConfirm = () => {
-    debugger
+    
     console.log("Confirm clicked with turno:", turnoSeleccionado);
     confirmTurno(turnoSeleccionado as Turno).then((turnoConfirmed) => {
       if (!filteredTurnos) {
